@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang=en>
+  <head>
+      <meta charset=utf-8>
+      <style type="text/css">
+body {
+  background-color: #0d326d;
+  color: white;
+  font-family: Sans-Serif;
+  text-align: center;
+}
+body h1 {
+  font-size: 3em;
+}
+body #count {
+  font-size: 10em;
+  font-weight: 600;
+}
+      </style>
+      <title>Votr</title>
+  </head>
+  <body>
+    <div class="centered">
+      <h1 contenteditable="true">Project Name</h1>
+      <p id="count">0</p>
+    </div>
+
+    <script type="text/javascript">
+      function update() {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", function(evt) {
+          if (xhr.status == 200) {
+            document.getElementById("count").innerHTML = xhr.responseText;
+          }
+        });
+        xhr.open("GET", "/getvotes");
+        xhr.send();
+      }
+
+      setInterval(update, 500);
+    </script>
+
+
+  </body>
+</html>
